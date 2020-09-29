@@ -51,7 +51,17 @@ def check_events(ai_settings,screen,ship,bullets):
 
 		elif event.type == pygame.KEYUP:
 			check_keyup_events(event,ship)
-
+def update_bullets(bullets):
+	'''update the position of the bullets and get rid of old bullets'''
+	#update bullet positions
+	bullets.update() 
+	#delete the bullet when it is off the screen s.t. it won't slow down game
+	#make a copy of the group and work from the copy:we don't want to modify the 
+	#group directly
+	#get rid of the bullets that are disappeared
+	for bullet in bullets.copy():
+		if bullet.rect.bottom <= 0:
+			bullets.remove(bullet)
 
 
 def update_screen(ai_settings,screen,ship,bullets):

@@ -17,10 +17,12 @@ def check_keydown_events(event,ai_settings,screen,ship,bullets):
 	elif event.key == pygame.K_LEFT:
 		ship.moving_left = True
 	elif event.key == pygame.K_SPACE:
-		#create a new bullet and add it to the bullets group
-		new_bullet = Bullet(ai_settings,screen,ship)
-		#using the add()method to store the new bullet in the group bullets
-		bullets.add(new_bullet)
+		#check how many bullets exits before we create a new bullet
+		if len(bullets) < ai_settings.bullets_allowed:
+			#create a new bullet and add it to the bullets group
+			new_bullet = Bullet(ai_settings,screen,ship)
+			#using the add()method to store the new bullet in the group bullets
+			bullets.add(new_bullet)
     
 def check_keyup_events(event,ship):
 	'''respond to key release'''

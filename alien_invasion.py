@@ -30,6 +30,14 @@ def run_game():
 		#update the ship's position
 		ship.update()
 		bullets.update()
+
+		#delete the bullet when it is off the screen s.t. it won't slow down game
+		#make a copy of the group and work from the copy:we don't want to modify the 
+		#group directly
+		for bullet in bullets.copy():
+			if bullet.rect.bottom <= 0:
+				bullets.remove(bullet)
+		print(len(bullets))
 		#Redraw the screen during each pass through the loop
 		gf.update_screen(ai_settings,screen,ship,bullets)
 		# pygame.display.flip() #new added

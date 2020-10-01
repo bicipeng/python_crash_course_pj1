@@ -87,7 +87,10 @@ def update_screen(ai_settings,screen,ship,aliens,bullets):
 def create_alien(ai_settings,screen,aliens,alien_number):
 	alien = Alien(ai_settings,screen)
 	alien_width = alien.rect.width
-	alien.x = alien_width + 2 * alien_width * alien_number
+	#rect.x is the top left corner of the alien, 
+	#each alien.x is going to be on the odd number spot: i.e. alien_width, 
+	#3*alien_with,5*alien_with.... until reach the number of alien you want 
+	alien.x = alien_width * (1 + 2 * alien_number) 
 	alien.rect.x = alien.x
 	aliens.add(alien)
 
